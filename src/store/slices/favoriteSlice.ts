@@ -3,24 +3,24 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { Post } from "../../models/post";
 
 export interface FavoriteSlice {
-  posts: Record<number, Post | undefined>;
+  selects: Record<number, Post | undefined>;
 }
 const initialState: FavoriteSlice = {
-  posts: {},
+  selects: {},
 };
 export const favoriteSlice = createSlice({
   name: "favorite",
   initialState,
   reducers: {
     addFavorite: (state, { payload }: PayloadAction<Post>) => {
-      state.posts[payload.id] = payload;
+      state.selects[payload.id] = payload;
     },
     deleteFavorite: (state, { payload }: PayloadAction<number>) => {
-      state.posts[payload] = undefined;
+      state.selects[payload] = undefined;
     },
   },
 });
 
-export const {addFavorite, deleteFavorite} = favoriteSlice.actions
+export const { addFavorite, deleteFavorite } = favoriteSlice.actions;
 
 export default favoriteSlice.reducer;
